@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ru.netology.entity.Country;
 import ru.netology.entity.Location;
 
-import java.lang.reflect.Executable;
 import java.util.stream.Stream;
 
 import static ru.netology.geo.GeoServiceImpl.MOSCOW_IP;
@@ -38,7 +37,7 @@ public class GeoServiceImplTest {
     }
 
     @Test
-    void test_byIp_success(){
+    void test_byIp_success() {
         // given:
         String ip = "172.0.32.11";
         Location expected = new Location("Moscow", Country.RUSSIA, "Lenina", 15);
@@ -55,13 +54,13 @@ public class GeoServiceImplTest {
     }
 
     @Test
-    void test_byCoordinates_exseption_success(){
-        double latitude =3.33;
+    void test_byCoordinates_exseption_success() {
+        double latitude = 3.33;
         double longitude = 3.009;
-         Class<RuntimeException> expected = RuntimeException.class;
+        Class<RuntimeException> expected = RuntimeException.class;
 
         // then:
-        Assertions.assertThrows(expected, () -> sut.byCoordinates(latitude,longitude));
+        Assertions.assertThrows(expected, () -> sut.byCoordinates(latitude, longitude));
     }
 
     @ParameterizedTest
@@ -82,7 +81,7 @@ public class GeoServiceImplTest {
                 Arguments.of(MOSCOW_IP, new Location("Moscow", Country.RUSSIA, "Lenina", 15)),
                 Arguments.of(NEW_YORK_IP, new Location("New York", Country.USA, " 10th Avenue", 32)),
                 Arguments.of("172.0.0.0", new Location("Moscow", Country.RUSSIA, null, 0)),
-                Arguments.of("96.0.0.0",new Location("New York", Country.USA, null, 0)));
+                Arguments.of("96.0.0.0", new Location("New York", Country.USA, null, 0)));
 
     }
-    }
+}
